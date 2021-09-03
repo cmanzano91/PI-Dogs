@@ -2,7 +2,8 @@ var express = require('express');
 const {Dog, Temperament} = require('../db.js');
 const api = require('../../contoller/api');
 const dogsApi = require('../../contoller/dogsApi');
-const dbDogs = require('../../contoller/dbFunc');
+const dogsBD = require('../../contoller/dogsDB')
+const dbDogs = require('../../contoller/dbFunc')
 var router = express.Router();
 module.exports = router;
 
@@ -12,16 +13,10 @@ module.exports = router;
 router.get('/', async (req,res) =>{ 
   const {name} = req.query;
     
-  const dogs = await dogsApi();  
-
-  // PARA USAR CAMBIAR CONST DOGS POR LET DOGS
-  // for(let i=0; i< dogs.length; i++){
-  //   dogs[i]["temperament"] = dogs[i]["temperament"].split(',').map(a => a.trim())
-  //   console.log(dogs[i]["temperament"])
-  // }
+  let dogs = await dogsApi();  
   
-  const dogsDB = await dbDogs.dogsDB();
-    
+  const dogsDB = await dogsBD();
+  console.log(dogsDB)
   const allDogs = [...dogsDB,...dogs];
     
     if(name){
@@ -44,32 +39,39 @@ router.get('/', async (req,res) =>{
 
    const {idDog} = req.params;
    const dogs = await api.apiDogs();
-
+   const dogsBD  = await dbDogs.dogsDB()
   try{ 
 
     if(!isNaN(idDog)){ 
-      const oneDog = dogs.find(d => { 
+      let oneDog = dogs.find(d => { 
         return d.id === parseInt(idDog);
       });
-
-      // PARA USAR CAMBIAR CONST ONEDOG POR LET ONEDOG
-      // let arrayTemp = oneDog['temperament'].split(',').map(a => a.trim());
-      // oneDog['temperament'] = arrayTemp;
-
+      
+      if(oneDog){
       return res.json(oneDog);
+      }
+      else {
+        return res.status(400).send('Dog not found')
+      }
+  
     };
 
-    let oneDogDB = await Dog.findByPk(idDog, {
-        include: Temperament
-      });
+    let oneDogDB = dogsBD.find(d =>{ 
+      return d.id === idDog;
+    })
 
-
-    return res.json(oneDogDB);  // SI TIRA NULL ES PORQUE NO SE CREO CORRECTAMENTE
+      if(oneDogDB){
+        try {
+          return res.json(oneDogDB) 
+        }
+        catch(e){
+          console.log('no se creo correctamente')
+        }
+      }
 }
 
 catch(e){
   return res.status(400).send({ msg: "Id incorrecto"});
-
 }
 
  })
@@ -78,13 +80,16 @@ catch(e){
 
 router.post('/', async (req,res) =>{
 
-  const {name, height, weight, life_span, temperament} = req.body;
+  const {name, minheight, maxheight, minweight, maxweight, minlife_span, maxlife_span, temperament} = req.body;
+  let height = minheight + ' - ' + maxheight
+  let weight = minweight + ' - ' + maxweight
+  let life_span = minlife_span + ' - ' + maxlife_span + ' years'
 
   try{
   const newDog = await Dog.create({
     name, 
+    weight,
     height, 
-    weight, 
     life_span
   });
 
@@ -94,7 +99,7 @@ router.post('/', async (req,res) =>{
   
   }
   catch(e){
-     return res.send({msg: "Debe completar todo los campos obligatorios"});
+     return res.send({msg: "Error de carga de perro"});
   }
   
 

@@ -1,5 +1,7 @@
 const api = require('./api');
 
+
+// ME TRAE LA INFO QUE NECESITO PARA LA RUTA DE DOGS/ID DE MI API
 async function dogsApi(){
 
 let dogs = await api.apiDogs();

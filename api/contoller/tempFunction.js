@@ -4,6 +4,7 @@ const api = require('./api.js');
 async function tempFunction(){
     try{
     let dogsTemp = await api.apiDogs();
+    
 
     dogsTemp = dogsTemp.map(d => {
       if(d.temperament){
@@ -11,6 +12,7 @@ async function tempFunction(){
     };
     }).join().split(',');
 
+  
     let temps = [];
 
     dogsTemp.map(d => {
@@ -27,7 +29,7 @@ async function tempFunction(){
  
 }
 catch(e){
-    console.log('error');
+    console.log('error de carga de temperaments');
 }
 };
 
