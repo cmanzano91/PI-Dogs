@@ -1,7 +1,8 @@
 
 const initialState = {
     dogs:[],
-    temperaments: []
+    temperaments:[],
+    dogsDetails: []
 }
 
 function rootReducer(state = initialState, action){
@@ -16,9 +17,15 @@ function rootReducer(state = initialState, action){
                 ...state,
                 temperaments: action.payload
             }
+            case 'GET_DOGS_DETAIL':
+                return {
+                    ...state,
+                    dogsDetails: action.payload
+                }
+
         case 'FILTER_DOG':
             const dogs = state.dogs
-            const filterDog = dogs.filter(d => d.id === action.payload)
+            const filterDog = dogs && dogs.filter(d => d.id === action.payload)
             return {
                 ...state,
                 dogs: filterDog,

@@ -6,7 +6,7 @@ async function dogsApi(){
 
 let dogs = await api.apiDogs();
 
-dogs = dogs.map((d) =>{
+dogs = dogs && dogs.map((d) =>{
   return {
   id: d.id,
   image:d.image,

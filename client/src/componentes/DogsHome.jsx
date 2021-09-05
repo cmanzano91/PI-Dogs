@@ -10,6 +10,7 @@ export default function DogsHome(){
 
 const dispatch = useDispatch()
 const dogs = useSelector(state => state.dogs) // me traigo todo mis dogs del estado
+
 const temperaments = useSelector(state => state.temperaments)
 const [currentPage, setCurrentPage] = useState(1) // seteo mi primera pagina
 const [dogsPage,setDogsPage] = useState(8) // cuantos perros por pagina
@@ -36,9 +37,10 @@ function handleDogs(e){
     dispatch(getDogs())
 }
 
-function handleFilterDogs(e){
+function handleFilterByDogs(e){
     e.preventDefault()
-   dispatch(filterDog(e.target.value))
+    dispatch(filterDog(e.target.value))
+
 }
 
 return (
@@ -57,17 +59,16 @@ return (
             <select name="Weight" id="">
                 <option value="weigh">Select by weight</option>
             </select>
-            <select onChange={(e)=> handleFilterDogs(e)}>
+            <select onChange={(e)=> handleFilterByDogs(e)}>
             <option>Select by dog breed</option>
                 { 
                 dogs && dogs.map(d =>  
-                <option key={d.id} value={d.id}>{d.name}</option>
+                <option key={d.id} value={d.id}>{d.name}</option> 
                 )}
             </select>
             <select name="" id="">
             <option>Select by temperament</option>
-            { 
-                temperaments && temperaments.map(d =>    
+            {  temperaments && temperaments.map(d =>    
                 <option key={d} value={d}>{d}</option>
                 )}
             </select>
@@ -80,7 +81,7 @@ return (
             pagination={pagination}
             />  
             {
-             currentDogs?.map(d => { return (
+             currentDogs && currentDogs.map(d => { return (
                 <Link to= {'/dogs/'+d.id}>
                 <DogCard name={d.name} image={d.image} weight={d.weight} temperament ={d.temperament} key={d.id}/>
                 </Link>

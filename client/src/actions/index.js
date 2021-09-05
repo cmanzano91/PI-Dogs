@@ -1,4 +1,5 @@
 import axios from 'axios'
+import DogsDetails from '../componentes/DogsDetails';
 // const back = 'http://localhost:3001/dogs'
 
 export function getDogs(){
@@ -21,9 +22,21 @@ export function getTemperaments(){
     }
 }
 
+export function getDogsDetail(id){
+    return async function(dispatch){
+        var dogsDetail = await axios.get(`http://localhost:3001/dogs/${id}`,{});
+        return dispatch ({
+            type: 'GET_DOGS_DETAIL',
+            payload: dogsDetail.data
+        })
+     }
+ 
+}
+
 export function filterDog(payload){
     return {
         type: 'FILTER_DOG',
         payload
     }
 }
+

@@ -5,8 +5,8 @@ export default function DogCard({name,image,temperament,weight}){
         <div>
             <h3>{name}</h3>
             <img src={image} alt="Image not found"/>
-            <h1>Temperamentos: {temperament}</h1>
-            <h1>Peso: {weight}</h1>
+            <h1>Temperaments: {temperament}</h1>
+            <h1>Weight: {weight}</h1>
         </div>
     )
 }

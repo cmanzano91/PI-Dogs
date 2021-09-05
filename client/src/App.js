@@ -3,9 +3,8 @@ import './App.css';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Landing from './componentes/Landing.jsx';
 import DogsHome from './componentes/DogsHome';
-import DogDetails from './componentes/DogCard';
 import NewDog from './componentes/NewDog';
-import {OnFilter} from './actions'
+import DogsDetails from './componentes/DogsDetails';
 
 
 
@@ -15,9 +14,9 @@ function App() {
     <BrowserRouter> 
    <div className="App">  
      <Route exact path='/' component={Landing}/>
-     <Route path='/dogs' component={DogsHome}/>
-     <Route path ='/dogs/:id' /*render ={({match}) => <DogDetails dog = {onFilter(match.params.id)}/>}/*//>
-     <Route path = '/dogs/newDog' component={NewDog}/>
+     <Route exact path='/dogs' component={DogsHome}/>
+     <Route path ='/dogs/:id'  render ={({match}) => <DogsDetails id = {match.params.id}/>}/>
+     <Route path ='/newDog' component={NewDog}/>
     </div>
     </BrowserRouter>
   );
