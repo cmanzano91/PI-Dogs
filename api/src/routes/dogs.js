@@ -22,7 +22,7 @@ router.get('/', async (req,res) =>{
     if(name){
       const dogName = allDogs.filter(d => {
         return d.name.toLocaleLowerCase().includes(name.toLocaleLowerCase());
-      }).map(d => d.name);
+      });
 
       if(!dogName.length){
         return res.status(404).send({ msg: "Dog not found" });

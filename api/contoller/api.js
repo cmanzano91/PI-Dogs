@@ -23,8 +23,8 @@ module.exports = {
                  id: d.id,
                  image:d.image.url,
                  name:d.name,
-                 weight:d.weight.imperial,
-                 height:d.height.imperial,
+                 weight:d.weight.metric,
+                 height:d.height.metric,
                  life_span: d.life_span,
                  temperament: d.temperament,
                 }});

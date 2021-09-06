@@ -1,5 +1,4 @@
 import axios from 'axios'
-import DogsDetails from '../componentes/DogsDetails';
 // const back = 'http://localhost:3001/dogs'
 
 export function getDogs(){
@@ -33,6 +32,22 @@ export function getDogsDetail(id){
  
 }
 
+export function getDogsName(name){
+    return async function(dispatch){
+        try{
+        var dogsName = await axios.get(`http://localhost:3001/dogs?name=${name}`,{});
+        return dispatch ({
+            type: 'GET_DOGS_NAME',
+            payload: dogsName.data
+        })
+    }
+    catch(e){
+        console.log('error de base'+e)
+    }
+     }
+ 
+}
+
 export function filterDog(payload){
     return {
         type: 'FILTER_DOG',
@@ -40,3 +55,22 @@ export function filterDog(payload){
     }
 }
 
+export function filterTemperament(payload){
+    return {
+        type: 'FILTER_TEMPERAMENT',
+        payload
+    }
+}
+export function filterWeight(payload){
+    return {
+        type: 'FILTER_WEIGHT',
+        payload
+    }
+}
+
+export function sortBy(payload){
+    return {
+        type: 'SORT_BY',
+        payload
+    }
+}
