@@ -7,7 +7,6 @@ const dbDogs = require('../../contoller/dbFunc')
 var router = express.Router();
 module.exports = router;
 
-
 // -------- GET DOGS & DOG BY NAME --------------
 
 router.get('/', async (req,res) =>{ 
@@ -16,7 +15,6 @@ router.get('/', async (req,res) =>{
   let dogs = await dogsApi();  
   
   const dogsDB = await dogsBD();
-  console.log(dogsDB)
   
   const allDogs = [...dogsDB,...dogs];
     

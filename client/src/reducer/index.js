@@ -3,7 +3,7 @@ const initialState = {
     dogs:[],
     allDogs: [],
     temperaments:[],
-    dogsDetails: [],
+    dogDetails: [],
 }
 
 function rootReducer(state = initialState, action){
@@ -22,13 +22,17 @@ function rootReducer(state = initialState, action){
             case 'GET_DOGS_DETAIL':
                 return {
                     ...state,
-                    dogsDetails: action.payload
+                    dogDetails: action.payload
                 }
         case 'GET_DOGS_NAME':
             return {
                 ...state,
                 dogs: action.payload
-            }        
+            }
+        case 'POST_DOG':
+            return {
+                ...state,
+                }            
 
         case 'FILTER_DOG':
             const dogs = state.allDogs
@@ -65,34 +69,74 @@ function rootReducer(state = initialState, action){
                 dogs: dogsTemp
             }
 
-        case 'FILTER_WEIGHT':
-           const dogs4 = state.allDogs
+        case 'SORT_BY_WEIGHT':
             let dogsWeight;
             if(action.payload === 'allW'){
-                dogsWeight = dogs4
+                dogsWeight = state.dogs
             }
-            if(action.payload === 'asc'){
-                dogsWeight = dogs4.sort(function(a,b){
+            if(action.payload === 'ascW'){
+                dogsWeight = state.dogs.sort(function(a,b){
+                    if(!b.weight.split('-')[1] || (b.weight.split('-')[0].trim() === 'NaN')){
+                        if(parseInt(a.weight.split('-')[1]) > parseInt(b.weight.split('-')[0])){
+                            return -1
+                        }
+                        if(parseInt(a.weight.split('-')[1]) < parseInt(b.weight.split('-')[0])){
+                            return 1
+                        }
+                            return 0
+                        }
+                    if(!a.weight.split('-')[1] || (b.weight.split('-')[0].trim() === 'NaN')){
+                        if(parseInt(a.weight.split('-')[0]) > parseInt(b.weight.split('-')[1])){
+                            return -1
+                        }
+                        if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[1])){
+                            return 1
+                        }
+                            return 0
+                        }
+
                     if(parseInt(a.weight.split('-')[1]) > parseInt(b.weight.split('-')[1])){
-                        return -1
-                    }
-                    if(parseInt(a.weight.split('-')[1])< parseInt(b.weight.split('-')[1])){
-                        return 1
-                    }
-                        return 0
-                })
+                                return -1
+                            }
+                            if(parseInt(a.weight.split('-')[1]) < parseInt(b.weight.split('-')[1])){
+                                return 1
+                            }
+                                return 0                   
+                    })
+                    console.log(dogsWeight)
             }
-            if(action.payload === 'des'){
-                dogsWeight = dogs4.sort(function(a,b){
+            if(action.payload === 'desW'){
+                dogsWeight = state.dogs.sort(function(a,b){
+
+                    if(!b.weight.split('-')[0] || (b.weight.split('-')[0].trim() === 'NaN')){
+                        if(parseInt(a.weight.split('-')[0]) > parseInt(b.weight.split('-')[1])){
+                            return 1
+                        }
+                        if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[1])){
+                            return -1
+                        }
+                            return 0
+                        }
+                    if(!a.weight.split('-')[0] || (a.weight.split('-')[0].trim() === 'NaN')){
+                        if(parseInt(a.weight.split('-')[1]) > parseInt(b.weight.split('-')[0])){
+                            return 1
+                        }
+                        if(parseInt(a.weight.split('-')[1]) < parseInt(b.weight.split('-')[0])){
+                            return -1
+                        }
+                            return 0
+                        }
+                
                     if(parseInt(a.weight.split('-')[0]) > parseInt(b.weight.split('-')[0])){
-                        return 1
-                    }
-                    if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[0])){
-                        return -1
-                    }
-                        return 0
+                            return 1
+                        }
+                        if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[0])){
+                            return -1
+                        }
+                            return 0
+
                 })
-                                      
+                  console.log(dogsWeight)                    
             }
 
             return {
@@ -100,11 +144,13 @@ function rootReducer(state = initialState, action){
                 dogs: dogsWeight,
             }       
             
-        case 'SORT_BY':
-            const dogs5 = state.allDogs
+        case 'SORT_BY_NAME':
             let sortDog;
-            if(action.payload === 'asc'){
-                sortDog = dogs5.sort(function(a,b){
+            if(action.payload === 'allN'){
+                sortDog = state.dogs
+            }
+            if(action.payload === 'ascN'){
+                sortDog = state.dogs.sort(function(a,b){
                     if(a.name > b.name){
                         return 1
                     }
@@ -114,8 +160,8 @@ function rootReducer(state = initialState, action){
                         return 0
                 })
             }
-            if(action.payload === 'des'){
-                sortDog = dogs5.sort(function(a,b){
+            if(action.payload === 'desN'){
+                sortDog = state.dogs.sort(function(a,b){
                     if(a.name > b.name){
                         return -1
                     }

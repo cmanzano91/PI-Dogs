@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDogs, getTemperaments, filterDog, filterWeight, sortBy, filterTemperament } from '../actions'
+import { getDogs, getTemperaments, filterTemperament, filterDog, sortByWeight, sortByName} from '../actions'
 import { Link } from 'react-router-dom'
 import DogCard from './DogCard'
 import Pagination from './Pagination'
 import SearchBar from './SearchBar'
+
 
 export default function DogsHome(){
 
@@ -14,6 +15,7 @@ const dogs = useSelector(state => state.dogs)
 const temperaments = useSelector(state => state.temperaments)
 
 const [order, setOrder] = useState('')
+const [orderW, setOrderW] = useState('')
 
 useEffect(() => {
     dispatch(getDogs())
@@ -22,7 +24,6 @@ useEffect(() => {
 useEffect(() => {
     dispatch(getTemperaments())
 },[dispatch]) // queda vacio para que se monte ya que no depende de nada
-
 
 
 // ---------- PAGINATION ------------------
@@ -36,32 +37,40 @@ const pagination = (number) =>{
     setCurrentPage(number)
 }
 
-// --------- HANDLER FILTERS BY DOGS AND TEMPERAMENTS -----------
+// --------- HANDLER FILTERS BY DOGS AND TEMPERAMENTS-----------
 function handleFilterByDogs(e){
     e.preventDefault()
     dispatch(filterDog(e.target.value))
 
 }
+
 function handleTemperaments(e){
     e.preventDefault()
     dispatch(filterTemperament(e.target.value))
 
 }
+
  // --------- HANDLER SORTS BY WEIGHT AND NAME ----------- 
-function handleFilterByWeight(e){
+function handleSortByWeight(e){
     e.preventDefault()
-    dispatch(filterWeight(e.target.value))
+    dispatch(sortByWeight(e.target.value))
     setCurrentPage(1)
-    setOrder(`${e.target.value}`)
+    setOrderW(`${e.target.value}`)
 }
 
-function handleSortBy(e){
+function handleSortByName(e){
     e.preventDefault()
-    dispatch(sortBy(e.target.value))
+    dispatch(sortByName(e.target.value))
     setCurrentPage(1)
     setOrder(`${e.target.value}`)
 
 }
+
+
+// function handleDogs(e){
+//     e.preventDefault()
+//     dispatch(getDogs())
+// }
 
 
 return (
@@ -74,14 +83,21 @@ return (
             <SearchBar/>
         </div>
 
+        <div>
+            {/* <button onClick={e => {handleDogs(e)}}>
+                Reload dogs breed
+            </button> */}
+        </div>
         <div>   
-            <select onChange={(e)=> handleSortBy(e)}>           
-                <option value="asc" key="asc">Ascendente</option>
-                <option value="des" key="des">Descendente</option>
+            <select onChange={(e)=> handleSortByName(e)}> 
+                <option value="allN" key="name">Sort by Name</option>          
+                <option value="ascN" key="asc">Ascendente</option>
+                <option value="desN" key="des">Descendente</option>
             </select>
-            <select onChange={(e)=> handleFilterByWeight(e)}>
-                <option value="asc" key="asc">Ascendente Weight</option>
-                <option value="des" key="des">Descendente Weight</option>
+            <select onChange={(e)=> handleSortByWeight(e)}>
+                <option value="allW" key="allW">Sort by Weight</option>
+                <option value="ascW" key="ascW">Ascendente Weight</option>
+                <option value="desW" key="desW">Descendente Weight</option>
             </select>
             <select onChange={(e)=> handleFilterByDogs(e)}>
                 <option value='all' key="all">Breeds</option>    
@@ -91,11 +107,11 @@ return (
             <select onChange ={e => handleTemperaments(e)}>
                 <option value='allT' key="allT">Temperaments</option>
                 { temperaments && temperaments.map(d =>    
-                    <option key={d} value={d}>{d}</option>
-                    )}
+                <option key={d} value={d}>{d}</option>
+                )}
             </select>
-
         </div> 
+
         <div>
             <Pagination
             dogsPage= {dogsPage}
@@ -119,10 +135,4 @@ return (
 
 
 
-        {/* <button onClick={e => {handleDogs(e)}}>
-            Reload dogs breed
-        </button> */}
-// function handleDogs(e){
-//     e.preventDefault()
-//     dispatch(getDogs())
-// }
+

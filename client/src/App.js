@@ -17,6 +17,8 @@ function App() {
      <Route path ='/dogs/:id'  render ={({match}) => <DogsDetails id = {match.params.id}/>}/>
      <Route exact path='/dogs' component={DogsHome}/>
      <Route path ='/newDog' component={NewDog}/>
+
+     
     </div>
     </BrowserRouter>
   );

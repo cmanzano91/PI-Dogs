@@ -1,17 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { getDogsDetail } from "../actions";
+import { getDogDetails } from "../actions";
 import {Link} from 'react-router-dom'
 
 export default function DogsDetails({id}){
-    const dogDetail = useSelector(state => state.dogsDetails)
+    const dogDetail = useSelector(state => state.dogDetails)
+
     const dispatch = useDispatch()  
 
     useEffect(() => {
-     dispatch(getDogsDetail(id))
-    })  
+     dispatch(getDogDetails(id))
+    },[dispatch])  
 
+    
     return(
         <div>
         <h3>{dogDetail.name}</h3>
