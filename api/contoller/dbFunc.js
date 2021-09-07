@@ -8,6 +8,7 @@ module.exports = {
     let result = dogsDB.map(d => {
         return {
             id: d.id,
+            image: d.image,
             name: d.name,
             height: d.height,
             weight: d.weight,
@@ -15,7 +16,6 @@ module.exports = {
             temperament:d.dataValues.temperaments.map(t => t.name)
         }
     })
-
     return result;
 
 },

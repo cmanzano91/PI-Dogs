@@ -14,7 +14,6 @@ async function dogsBD(){
       temperament:d.temperament
     };
     });
-    
     return dogs;
     };
     

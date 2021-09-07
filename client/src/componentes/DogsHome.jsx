@@ -75,13 +75,11 @@ return (
         </div>
 
         <div>   
-            <select onChange={(e)=> handleSortBy(e)}>  
-                <option value="allN" key="allN">Sort by name</option>           
+            <select onChange={(e)=> handleSortBy(e)}>           
                 <option value="asc" key="asc">Ascendente</option>
                 <option value="des" key="des">Descendente</option>
             </select>
             <select onChange={(e)=> handleFilterByWeight(e)}>
-                <option value="allW" key="allW">Sort by Weight</option>
                 <option value="asc" key="asc">Ascendente Weight</option>
                 <option value="des" key="des">Descendente Weight</option>
             </select>

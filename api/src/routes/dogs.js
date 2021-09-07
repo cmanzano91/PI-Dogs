@@ -16,6 +16,7 @@ router.get('/', async (req,res) =>{
   let dogs = await dogsApi();  
   
   const dogsDB = await dogsBD();
+  console.log(dogsDB)
   
   const allDogs = [...dogsDB,...dogs];
     
@@ -84,13 +85,15 @@ router.post('/', async (req,res) =>{
   let height = minheight + ' - ' + maxheight
   let weight = minweight + ' - ' + maxweight
   let life_span = minlife_span + ' - ' + maxlife_span + ' years'
+  let image ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0G5ozUnb5Scrh7O-U4R5leSxHo17hwUhRhEPaykldXUr5z5HJ451-C2oti-4-sWq7T0E&usqp=CAU'
 
   try{
   const newDog = await Dog.create({
     name, 
     weight,
     height, 
-    life_span
+    life_span,
+    image
   });
 
   await newDog.addTemperaments(temperament);
