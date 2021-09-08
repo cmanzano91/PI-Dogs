@@ -13,7 +13,7 @@ module.exports = {
             height: d.height,
             weight: d.weight,
             life_span: d.life_span,
-            temperament:d.dataValues.temperaments.map(t => t.name)
+            temperament:d.dataValues.temperaments.map(t => t.name).join(', ')
         }
     })
     return result;

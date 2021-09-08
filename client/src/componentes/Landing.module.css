@@ -1,0 +1,9 @@
+.bgImg{
+  background-image: url("https://images.pexels.com/photos/3628100/pexels-photo-3628100.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+

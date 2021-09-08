@@ -4,7 +4,10 @@ const initialState = {
     allDogs: [],
     temperaments:[],
     dogDetails: [],
-}
+};
+
+var flagT = false
+var flagB = false
 
 function rootReducer(state = initialState, action){
     switch(action.type){
@@ -13,61 +16,87 @@ function rootReducer(state = initialState, action){
                 ...state,
                 dogs: action.payload,
                 allDogs: action.payload
-            }
+            };
         case 'GET_TEMPERAMENTS':
             return {
                 ...state,
                 temperaments: action.payload
-            }
+            };
             case 'GET_DOGS_DETAIL':
                 return {
                     ...state,
                     dogDetails: action.payload
-                }
+                };
         case 'GET_DOGS_NAME':
             return {
                 ...state,
                 dogs: action.payload
-            }
+            };
         case 'POST_DOG':
             return {
                 ...state,
-                }            
+                };           
 
         case 'FILTER_DOG':
-            const dogs = state.allDogs
+            let dogs = state.allDogs;
             let filterDog;
+            if(flagT && flagB){
+                dogs = flagT
+            }
+            if(flagT && !flagB){
+                dogs = state.dogs
+            }    
             if(action.payload === 'all'){
-                filterDog = dogs
+                if(flagT){
+                 filterDog = flagT
+                }
+                else{
+                    filterDog = state.allDogs
+                }
+                flagB = false
             }
             else{
             if(action.payload === 'number'){
                 filterDog = dogs.filter(d => !isNaN(d.id))
+                flagB = filterDog
             } 
             else{
                 filterDog = dogs.filter(d => isNaN(d.id))
+                flagB = filterDog
             }
             }
             return {
                 ...state,
                 dogs: filterDog,
-            }  
+            }; 
         
         case 'FILTER_TEMPERAMENT':
-            const dogs3 = state.allDogs
+            let dogs3 = state.allDogs
             let dogsTemp;
+            if(flagB && flagT){
+                dogs3 = flagB
+            }
+            if(flagB && !flagT){
+                dogs3 = state.dogs
+            }    
             if(action.payload === 'allT'){
-                dogsTemp = dogs3
+                if(flagB){
+                    dogsTemp = flagB
+                }else{
+                dogsTemp = state.allDogs
+                }
+                flagT = false
             }
             else{
                dogsTemp = dogs3.filter(d => 
                 d.temperament && d.temperament.length && d.temperament.includes(action.payload)
-            )  
+            )
+                flagT = dogsTemp  
             }        
             return{
                 ...state,
                 dogs: dogsTemp
-            }
+            };
 
         case 'SORT_BY_WEIGHT':
             let dogsWeight;
@@ -142,7 +171,7 @@ function rootReducer(state = initialState, action){
             return {
                 ...state,
                 dogs: dogsWeight,
-            }       
+            };       
             
         case 'SORT_BY_NAME':
             let sortDog;
@@ -171,16 +200,16 @@ function rootReducer(state = initialState, action){
                         return 0
                 })
                                       
-            }
+            };
             return {
                 ...state,
                 dogs: sortDog,
-            }
+            };
 
         default :
             return state;    
-    }
+    };
     
-}
+};
 
-export default rootReducer
+export default rootReducer;

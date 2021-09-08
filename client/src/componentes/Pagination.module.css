@@ -1,0 +1,15 @@
+.list{
+    display: inline;
+    vertical-align: top;
+    /* border: lightgray 0.5px solid; */
+    font-size: 0.8em;
+    padding: 0.3em;
+    /* background-color: whitesmoke; */
+    
+}
+
+.list:hover{
+    background-color:lightgray;
+    cursor: pointer;
+    
+}

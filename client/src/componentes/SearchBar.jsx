@@ -1,30 +1,31 @@
-import React from 'react'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { getDogsName } from '../actions'
+import React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getDogsName } from '../actions';
+import styles from './SearchBar.module.css'
+import {IoSearch} from 'react-icons/io5'
 
 
 export default function SearchBar(){
-    const dispatch = useDispatch()
-    const [search, setSearch] = useState('')
+    const dispatch = useDispatch();
+    const [search, setSearch] = useState('');
     
     function handleChange(e){
-        e.preventDefault()
-        setSearch(e.target.value)
-        console.log(search)
+        e.preventDefault();
+        setSearch(e.target.value);
       }
 
     function handleSubmit(e){
-        e.preventDefault()
-        dispatch(getDogsName(search))
-        setSearch('')  
+        e.preventDefault();
+        dispatch(getDogsName(search));
+        setSearch('');  
     }
     
     return(
         <div>
-            <input type="text" onChange={(e) => handleChange(e)}/>
-            <button type='submit' onClick ={(e) => handleSubmit(e)}>Search dogs by Name</button>
+            <input className={styles.input} type="text" placeholder='Search dog by name...' onChange={(e) => handleChange(e)}/>
+            <button className={styles.button} type='submit' onClick ={(e) => handleSubmit(e)}><IoSearch/></button>
         </div>
 
-    )    
-}
+    );    
+};

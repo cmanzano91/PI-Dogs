@@ -7,11 +7,12 @@ module.exports = {
     apiDogs: async function (){
         try{ 
         const dataApi = await axios.get(API)
+
         
          const dogs =  await dataApi.data.map((d) => {
              if(d.temperament){
                  try{
-                 let arrayTemp = d.temperament.split(',').map(t => t.trim())
+                 let arrayTemp = d.temperament.split(',').map(t => t.trim()).join(', ')
                  d.temperament = arrayTemp
                 }
              

@@ -85,6 +85,7 @@ router.post('/', async (req,res) =>{
   let life_span = minlife_span + ' - ' + maxlife_span + ' years'
   let image ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0G5ozUnb5Scrh7O-U4R5leSxHo17hwUhRhEPaykldXUr5z5HJ451-C2oti-4-sWq7T0E&usqp=CAU'
 
+if(name && minweight && maxweight && minheight && minheight){
   try{
   const newDog = await Dog.create({
     name, 
@@ -102,7 +103,10 @@ router.post('/', async (req,res) =>{
   catch(e){
      return res.send({msg: "Error de carga de perro"});
   }
-  
+}
+else{
+  return res.status(404).send({msg: "Error de carga de perro"})
+}
 
 });
 

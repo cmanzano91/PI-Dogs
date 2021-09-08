@@ -1,0 +1,84 @@
+import React from "react";
+import { configure, shallow, mount } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+import { NewDog } from "../componentes/NewDog";
+
+configure({ adapter: new Adapter() });
+
+describe("< NewDog />", () => {
+  describe("Estructura", () => {
+    let wrapper;
+    beforeEach(() => {
+      wrapper = shallow(< NewDog />);
+    });
+    it("Renderiza un <form>", () => {
+      expect(wrapper.find("form")).toHaveLength(1);
+    });
+
+    it('Renderiza un label con el texto igual a "Name/Breed "', () => {
+      // El orden en el que se encuentran los Labels es importante.
+      expect(wrapper.find("label").at(0).text()).toEqual("Name/Breed ");
+    });
+
+    it('Renderiza un input con la propiedad "name" igual a "name"', () => {
+      expect(wrapper.find('input[name="name"]')).toHaveLength(1);
+    });
+
+    it('Renderiza un label con el texto igual a "Min. height "', () => {
+      // El orden en el que se encuentran los Labels es importante.
+      expect(wrapper.find("label").at(1).text()).toEqual("Min. height ");
+    });
+
+    it('Renderiza una textarea con la propiedad "name" igual a "minheight"', () => {
+      expect(wrapper.find('textarea[name="minheight"]')).toHaveLength(1);
+    });
+
+    it('Renderiza un label con el texto igual a "Max. height "', () => {
+      // El orden en el que se encuentran los Labels es importante.
+      expect(wrapper.find("label").at(2).text()).toEqual("Max. height ");
+    });
+
+    it('Renderiza un input con la propiedad "name" igual a "maxheight"', () => {
+      expect(wrapper.find('input[name="maxheight"]')).toHaveLength(1);
+    });
+
+    it('Renderiza un label con el texto igual a "Min. weight "', () => {
+      // El orden en el que se encuentran los Labels es importante.
+      expect(wrapper.find("label").at(3).text()).toEqual("Min. weight ");
+    });
+
+    it('Renderiza un input con la propiedad "name" igual a "minweight"', () => {
+      expect(wrapper.find('input[name="minweight"]')).toHaveLength(1);
+    });
+
+    it('Renderiza un label con el texto igual a "Max. height "', () => {
+        // El orden en el que se encuentran los Labels es importante.
+        expect(wrapper.find("label").at(3).text()).toEqual("Max. height ");
+      });
+  
+      it('Renderiza un input con la propiedad "name" igual a "maxweight"', () => {
+        expect(wrapper.find('input[name="maxweight"]')).toHaveLength(1);
+      });
+
+    it('Renderiza un label con el texto igual a "Min. life span "', () => {
+        // El orden en el que se encuentran los Labels es importante.
+        expect(wrapper.find("label").at(3).text()).toEqual("Min. life span ");
+      });
+  
+      it('Renderiza un input con la propiedad "name" igual a "minlife_span"', () => {
+        expect(wrapper.find('input[name="minlife_span"]')).toHaveLength(1);
+      });
+  
+    it('Renderiza un label con el texto igual a "Choose temperaments: "', () => {
+        // El orden en el que se encuentran los Labels es importante.
+        expect(wrapper.find("label").at(3).text()).toEqual("Min. life span ");
+      });
+        
+    it('Renderiza un boton con el "type" "submit"', () => {
+      expect(wrapper.find('button[type="submit"]')).toHaveLength(1);
+    });
+  });
+
+})
+

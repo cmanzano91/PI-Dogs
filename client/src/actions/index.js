@@ -9,7 +9,7 @@ export function getDogs(){
             payload: dogs.data
         })
     }
-}
+};
 
 export function getTemperaments(){
     return async function(dispatch){
@@ -19,7 +19,7 @@ export function getTemperaments(){
             payload: temperaments.data
         })
     }
-}
+};
 
 export function getDogDetails(id){
     return async function(dispatch){
@@ -30,7 +30,7 @@ export function getDogDetails(id){
         })
      }
  
-}
+};
 
 export function getDogsName(name){
     return async function(dispatch){
@@ -40,13 +40,14 @@ export function getDogsName(name){
             type: 'GET_DOGS_NAME',
             payload: dogsName.data
         })
+    
     }
     catch(e){
-        console.log('error de base'+e)
+        alert('Dogs not found')
     }
      }
  
-}
+};
 
 
 export function postDog(payload){
@@ -55,31 +56,31 @@ export function postDog(payload){
         return newDog
     }
  
-}
+};
 
 export function filterDog(payload){
     return {
         type: 'FILTER_DOG',
         payload
     }
-}
+};
 
 export function filterTemperament(payload){
     return {
         type: 'FILTER_TEMPERAMENT',
         payload
     }
-}
+};
 export function sortByWeight(payload){
     return {
         type: 'SORT_BY_WEIGHT',
         payload
     }
-}
+};
 
 export function sortByName(payload){
     return {
         type: 'SORT_BY_NAME',
         payload
     }
-}
+};

@@ -1,0 +1,18 @@
+.image{
+    width: 8em;
+    height: 5em;
+    display:block;
+    margin: 1em;
+    border-radius: 1em;
+
+    
+}
+.format{
+    border: black 1px solid;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 1em;
+
+}
+

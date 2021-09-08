@@ -8,7 +8,7 @@ async function tempFunction(){
 
     dogsTemp = dogsTemp.map(d => {
       if(d.temperament){
-    return d.temperament;
+      return d.temperament;
     };
     }).join().split(',');
 
