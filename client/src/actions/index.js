@@ -1,5 +1,4 @@
-import axios from 'axios'
-// const back = 'http://localhost:3001/dogs'
+import axios from 'axios';
 
 export function getDogs(){
     return async function(dispatch){

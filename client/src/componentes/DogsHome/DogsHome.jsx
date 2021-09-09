@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDogs, getTemperaments, filterTemperament, filterDog, sortByWeight, sortByName} from '../actions';
+import { getDogs, getTemperaments, filterTemperament, filterDog, sortByWeight, sortByName} from '../../actions';
 import { Link } from 'react-router-dom';
-import DogCard from './DogCard';
-import Pagination from './Pagination';
-import SearchBar from './SearchBar';
-import styles from './DogsHome.module.css'
+import DogCard from '../DogCard/DogCard.jsx';
+import Pagination from '../Pagination/Pagination.jsx';
+import SearchBar from '../SearchBar/SearchBar.jsx';
+import styles from './DogsHome.module.css';
 
 
 export default function DogsHome(){
@@ -76,14 +76,17 @@ function handleDogs(e){
 
 
 return (
-    <div>
+    <div className={styles.bkg}>
+        <div className={styles.container}>   
         <nav className={styles.navBar}>
         <div className={styles.searchBar}>
             <SearchBar/>
         </div>
+        <div className={styles.createButton}>
         <Link to= '/newDog'>
-            <button className={styles.createButton}>Create new dog</button>
+            <button>Create new dog</button>
         </Link>
+        </div>
         </nav>
         <h1>THE DOG WORLD</h1>
         <div>
@@ -121,19 +124,19 @@ return (
             dogs = {dogs.length}
             pagination={pagination}
             />  
-            <div className={styles.cards}>
+            <ul className={styles.cards}>
             {
              currentDogs && currentDogs.map(d => { return (
-                <div>
-                <Link to= {'/dogs/'+d.id} key={d.id} className={styles.linkCard}>
+                <div key={d.id}>
+                <Link to= {'/dogs/'+d.id} className={styles.linkCard}>
                 <DogCard name={d.name} image={d.image} weight={d.weight} temperament ={d.temperament} />
                 </Link>
                 </div>
                 )})   
             }
-            </div>
+            </ul>
         </div>
-
+        </div>
     </div>
 
 

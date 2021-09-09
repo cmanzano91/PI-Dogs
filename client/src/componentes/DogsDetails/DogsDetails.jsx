@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getDogDetails } from "../actions";
+import { getDogDetails } from "../../actions";
 import {Link} from 'react-router-dom';
 import styles from  './DogsDetails.module.css'
 import {IoHome} from 'react-icons/io5'
@@ -39,3 +39,11 @@ export default function DogsDetails({id}){
     )
 
 };
+
+        // style = {{
+        //     backgroundImage : `url(${dogDetail.image})`,
+        //     width: '100vw',
+        //     height: '200vh',
+        //     backgroundRepeat: 'no-repeat',
+        //     position: 'absolute',
+        // }}

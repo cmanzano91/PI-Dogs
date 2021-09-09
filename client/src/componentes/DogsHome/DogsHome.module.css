@@ -1,0 +1,69 @@
+/* ----------------NAV BAR-------------------------------  */
+.navBar{
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJkrei4fuFD3WKZ1VDPqsbpitaiCpG9f2kig&usqp=CAU');
+    width: 100vw;
+    height: 10vh;
+    padding-bottom  : 20px;
+    padding-top: 15px;
+}
+.searchBar {
+    display: flex;
+    padding-left: 30em; 
+    background-color: white;
+  }
+
+.createButton{
+    display: flex;
+    margin-left: 70em;
+    cursor: pointer;
+}   
+
+.linkCard{
+    text-decoration: none;
+    font-size: small;
+}
+
+/* ----------------FILTERS------------------------------- */
+.filters{
+    margin-bottom: 0.8em;
+}
+
+
+/* ----------------CARDS------------------------------- */
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 40px;
+    padding: 40px;
+    justify-content: center;
+}
+
+/* .bkg{
+    background-image: url('https://images.pexels.com/photos/1189673/pexels-photo-1189673.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 100vw;
+    height: 200vh;
+} */
+
+
+/* .bkg{
+    background-color: #8d99ae;
+} */
+/* .container{
+    width: 100vw;
+    height: 200vh;
+    backdrop-filter: blur(3px);
+    background-color: #f3f3f373;
+} */
+
+/* .cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 0.1em; 
+    grid-row-gap: 0.1em; 
+} */

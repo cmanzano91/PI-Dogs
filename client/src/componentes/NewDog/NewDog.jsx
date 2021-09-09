@@ -2,17 +2,27 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getTemperaments, postDog } from '../actions';
+import { getTemperaments, postDog } from '../../actions';
 import { useState } from 'react';
 import styles from './NewDog.module.css'
 import {IoHome} from 'react-icons/io5'
 
-
+// function validation(newDog){
+//     let errors = {}
+//     if(!newDog.name){
+//         errors.name = 'Must enter a name'
+//     }
+//     if(newDog.minheight <= 0 ||newDog.maxheight <= 0||newDog.minweight <= 0 || newDog.maxweight <= 0 ){
+//         errors.number = 'Remember number should be higher than 0!'
+//     }
+//     return errors
+// }
 
 export default function NewDog(){
     const [newDog, setNewDog] = useState({name:'',  minheight:'', maxheight:'', minweight:'', maxweight:'', minlife_span:'', maxlife_span:'', temperament:[]});
     const dispatch = useDispatch();
     const temperaments = useSelector(state => state.temperaments);
+    const [errors, setErrors] = useState({})
 
 
     useEffect(() => {
@@ -26,6 +36,10 @@ export default function NewDog(){
           [e.target.name]: e.target.value
           
         });
+        // setErrors(validation({
+        //     ...newDog,
+        //     [e.target.name]: e.target.value
+        // }))
       };
      
       function handleSelect(e){ 
@@ -39,8 +53,8 @@ export default function NewDog(){
           setNewDog({
               ...newDog,
               temperament: newDog.temperament.filter(temp => temp !== t )
-          })
-      }
+          });
+      };
 
       function handleSubmit(e){
           e.preventDefault();
@@ -51,33 +65,42 @@ export default function NewDog(){
 
       
     return (
-        <div>
+        <div className={styles.bkg}>
+        <div className={styles.container}>
         <br />
         <Link to ='/dogs'>
         <button><IoHome/></button> 
         </Link>
-        <h3>Creat new Dog</h3>
+        <h3>Create new Dog</h3>
         <form onSubmit={handleSubmit}>
             <label>Name/Breed </label>
-            <input type="text" name ="name" value ={newDog.name} onChange={handleChange} required/>
+            <input type="text" name ="name" value ={newDog.name} onChange={handleChange} required/><br />
+            {/* { errors.name && 
+            <span>{errors.name}</span>
+            } */}
             <br />
             <label>Min. height </label>
             <input type="number" name ="minheight" value ={newDog.minheight} onChange={handleChange} required/>
             <label>Max. height </label>
             <input type="number" name ="maxheight" value ={newDog.maxheight} onChange={handleChange} required/>
-            <br />
+            <br /><br />
             <label>Min. weight </label>
             <input type="number" name ="minweight" value ={newDog.minweight} onChange={handleChange} required/>
-            <label>Max. height </label>
+            <label>Max. weight </label>
             <input type="number" name ="maxweight" value ={newDog.maxweight} onChange={handleChange} required/>
+            <br />
+            {/* { errors.number && 
+            <span>{errors.number}</span>
+            } */}
             <br />
             <label>Min. life span </label>
             <input type="number" name ="minlife_span" value ={newDog.minlife_span} onChange={handleChange}/>
             <label>Max. life span </label>
             <input type="number" name ="maxlife_span" value ={newDog.maxlife_span} onChange={handleChange}/>
-            <br />
+            <br /><br />
             <label>Choose temperaments: </label>
             <select onChange ={e => handleSelect(e)}>
+            <option></option>
             { temperaments && temperaments.map(d =>    
             <option key={d} value={d}>{d}</option>
             )}
@@ -94,6 +117,7 @@ export default function NewDog(){
                 )
             }
         <br /><br />
+        </div>
         </div>
     );   
     

@@ -1,7 +1,7 @@
 .button {
     border: solid 0.8px transparent;
     font-size: 0.8em;
-    background-color: rgb(176, 176, 245);
+    background-color:#d90429;
     transition: background-color 0.25s;
     cursor: pointer;
     color:black;
@@ -17,3 +17,4 @@
     font-weight: 100;
     width: 15rem;
   }
+

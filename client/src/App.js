@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter, Route} from 'react-router-dom';
-import Landing from './componentes/Landing.jsx';
-import DogsHome from './componentes/DogsHome';
-import NewDog from './componentes/NewDog';
-import DogsDetails from './componentes/DogsDetails';
+import Landing from './componentes/Landing/Landing.jsx';
+import DogsHome from './componentes/DogsHome/DogsHome.jsx';
+import NewDog from './componentes/NewDog/NewDog.jsx';
+import DogsDetails from './componentes/DogsDetails/DogsDetails.jsx';
 
 
 

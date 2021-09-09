@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getDogsName } from '../actions';
-import styles from './SearchBar.module.css'
-import {IoSearch} from 'react-icons/io5'
+import { getDogsName } from '../../actions';
+import styles from './SearchBar.module.css';
+import {IoSearch} from 'react-icons/io5';
 
 
 export default function SearchBar(){
