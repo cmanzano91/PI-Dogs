@@ -4,12 +4,13 @@
     /* border: lightgray 0.5px solid; */
     font-size: 0.8em;
     padding: 0.3em;
-    /* background-color: whitesmoke; */
-    
+    color:beige;
+        
 }
 
 .list:hover{
     background-color:lightgray;
+    color: black;
     cursor: pointer;
     
 }

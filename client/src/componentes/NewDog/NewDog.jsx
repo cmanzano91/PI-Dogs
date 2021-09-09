@@ -22,7 +22,7 @@ export default function NewDog(){
     const [newDog, setNewDog] = useState({name:'',  minheight:'', maxheight:'', minweight:'', maxweight:'', minlife_span:'', maxlife_span:'', temperament:[]});
     const dispatch = useDispatch();
     const temperaments = useSelector(state => state.temperaments);
-    const [errors, setErrors] = useState({})
+    // const [errors, setErrors] = useState({})
 
 
     useEffect(() => {
@@ -72,32 +72,36 @@ export default function NewDog(){
         <button><IoHome/></button> 
         </Link>
         <h3>Create new Dog</h3>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
+            <div className={styles.formName}>
             <label>Name/Breed </label>
             <input type="text" name ="name" value ={newDog.name} onChange={handleChange} required/><br />
             {/* { errors.name && 
             <span>{errors.name}</span>
             } */}
-            <br />
+            </div>
+            <div className={styles.formHeight}>
             <label>Min. height </label>
-            <input type="number" name ="minheight" value ={newDog.minheight} onChange={handleChange} required/>
+            <input type="number" name ="minheight" value ={newDog.minheight} onChange={handleChange} required style={{marginRight:'1rem'}}/>
             <label>Max. height </label>
-            <input type="number" name ="maxheight" value ={newDog.maxheight} onChange={handleChange} required/>
-            <br /><br />
+            <input type="number" name ="maxheight" value ={newDog.maxheight} onChange={handleChange} required style={{marginRight:'1rem'}}/>
+            </div>
+            <div className={styles.formWeight}>
             <label>Min. weight </label>
-            <input type="number" name ="minweight" value ={newDog.minweight} onChange={handleChange} required/>
+            <input type="number" name ="minweight" value ={newDog.minweight} onChange={handleChange} required style={{marginRight:'1rem'}}/>
             <label>Max. weight </label>
-            <input type="number" name ="maxweight" value ={newDog.maxweight} onChange={handleChange} required/>
-            <br />
+            <input type="number" name ="maxweight" value ={newDog.maxweight} onChange={handleChange} required style={{marginRight:'1rem'}}/>
             {/* { errors.number && 
             <span>{errors.number}</span>
             } */}
-            <br />
+            </div>
+            <div className={styles.formLifeSpan}>
             <label>Min. life span </label>
-            <input type="number" name ="minlife_span" value ={newDog.minlife_span} onChange={handleChange}/>
+            <input type="number" name ="minlife_span" value ={newDog.minlife_span} onChange={handleChange} style={{marginRight:'1rem'}}/>
             <label>Max. life span </label>
-            <input type="number" name ="maxlife_span" value ={newDog.maxlife_span} onChange={handleChange}/>
-            <br /><br />
+            <input type="number" name ="maxlife_span" value ={newDog.maxlife_span} onChange={handleChange} style={{marginRight:'1rem'}}/>
+            </div>
+            <div className={styles.formTemperaments}>
             <label>Choose temperaments: </label>
             <select onChange ={e => handleSelect(e)}>
             <option></option>
@@ -105,10 +109,12 @@ export default function NewDog(){
             <option key={d} value={d}>{d}</option>
             )}
             </select>
+            </div>
             <br /><br />
-            <button type='submit'>Submit</button>
+            <button type='submit' className={styles.submit}>Submit</button>
             <br /><br />
         </form>
+        <div>
             { newDog.temperament.map(t =>
                 <div key={t}>
                 <ul>{t}</ul>
@@ -116,7 +122,8 @@ export default function NewDog(){
                 </div>
                 )
             }
-        <br /><br />
+        </div>
+
         </div>
         </div>
     );   

@@ -16,3 +16,31 @@
     background-color: #f3f3f373;
 }
 
+.formName{
+    color:black;
+    font-size: 1em;
+    font-weight: 300;
+    width: 75rem;
+    margin-bottom: 1rem;
+}
+
+
+.formHeight , .formWeight, .formLifeSpan, .formTemperaments{
+    color:black;
+    font-size: 1em;
+    font-weight: 300;
+    width: 75rem;
+    margin-bottom: 1rem;
+}
+
+
+.submit{
+    border-radius: 5em;
+    width: 5rem;
+    height: 2rem;
+    background-color: gray;
+}
+.submit:hover{
+    cursor: pointer;
+    background-color: lightgray;
+}

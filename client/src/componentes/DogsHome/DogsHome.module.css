@@ -1,30 +1,48 @@
-/* ----------------NAV BAR-------------------------------  */
-.navBar{
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJkrei4fuFD3WKZ1VDPqsbpitaiCpG9f2kig&usqp=CAU');
-    width: 100vw;
-    height: 10vh;
-    padding-bottom  : 20px;
-    padding-top: 15px;
+/* ----------------BACKGROUND-------------------------------  */
+.bkg{
+    background-image: url('https://images.pexels.com/photos/3008332/pexels-photo-3008332.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');
+    padding-bottom: 20px;
+    background-size: cover;
+    
 }
+/* ----------------NAV BAR-------------------------------  */
+
 .searchBar {
     display: flex;
-    padding-left: 30em; 
-    background-color: white;
+    padding-left: 30em;
+    padding-top: 2em; 
   }
 
 .createButton{
     display: flex;
-    margin-left: 70em;
+    margin-left: 67em;
+
+}
+.button{
+    border-radius: 5px;
+    background-color: gray;
+}
+
+.button:hover{
+    background-color:lightgray;
     cursor: pointer;
 }   
 
 .linkCard{
     text-decoration: none;
     font-size: small;
+    color: black;
+}
+
+/* ----------------HEAD------------------------------- */
+.head{
+    color: beige;
+    
 }
 
 /* ----------------FILTERS------------------------------- */
 .filters{
+    margin-top: 0.8em;
     margin-bottom: 0.8em;
 }
 
@@ -39,6 +57,31 @@
     justify-content: center;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .navBar{
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJkrei4fuFD3WKZ1VDPqsbpitaiCpG9f2kig&usqp=CAU');
+    width: 100vw;
+    height: 10vh;
+    padding-bottom  : 20px;
+    padding-top: 15px;
+} */
+
 /* .bkg{
     background-image: url('https://images.pexels.com/photos/1189673/pexels-photo-1189673.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
     background-size: cover;
@@ -51,9 +94,6 @@
 } */
 
 
-/* .bkg{
-    background-color: #8d99ae;
-} */
 /* .container{
     width: 100vw;
     height: 200vh;

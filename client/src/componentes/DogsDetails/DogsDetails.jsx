@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import styles from  './DogsDetails.module.css'
 import {IoHome} from 'react-icons/io5'
 
+
 export default function DogsDetails({id}){
     const dispatch = useDispatch();  
 
@@ -16,7 +17,8 @@ export default function DogsDetails({id}){
     const dogDetail = useSelector(state => state.dogDetails); 
 
     return(
-        <div>
+        <div style = {{backgroundImage : `url(${dogDetail.image})`,width: '100%',height: '100%',backgroundRepeat: 'no-repeat',backgroundSize: 'cover',paddingTop:'20px'}}>
+        <div className={styles.bkg}>
         <div className={styles.backHome}>
         <Link to ='/dogs'>
         <button><IoHome/></button>
@@ -34,6 +36,7 @@ export default function DogsDetails({id}){
         <h5>Life Span: </h5>
         <p>{dogDetail.life_span}</p>
         <br />
+        </div>
         </div> 
         </div>
     )

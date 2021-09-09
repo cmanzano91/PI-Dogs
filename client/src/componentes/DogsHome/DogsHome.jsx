@@ -77,20 +77,20 @@ function handleDogs(e){
 
 return (
     <div className={styles.bkg}>
-        <div className={styles.container}>   
+        <div>   
         <nav className={styles.navBar}>
         <div className={styles.searchBar}>
             <SearchBar/>
         </div>
         <div className={styles.createButton}>
         <Link to= '/newDog'>
-            <button>Create new dog</button>
+            <button className={styles.button}>Create new dog</button>
         </Link>
         </div>
         </nav>
-        <h1>THE DOG WORLD</h1>
+        <h1 className={styles.head}>THE DOG WORLD</h1>
         <div>
-            <button onClick={e => {handleDogs(e)}}>
+            <button onClick={e => {handleDogs(e)}} className={styles.button}>
                 Reload dogs 
             </button>
         </div>
@@ -127,7 +127,7 @@ return (
             <ul className={styles.cards}>
             {
              currentDogs && currentDogs.map(d => { return (
-                <div key={d.id}>
+                <div key={d.id} className={styles.dogCard}>
                 <Link to= {'/dogs/'+d.id} className={styles.linkCard}>
                 <DogCard name={d.name} image={d.image} weight={d.weight} temperament ={d.temperament} />
                 </Link>
