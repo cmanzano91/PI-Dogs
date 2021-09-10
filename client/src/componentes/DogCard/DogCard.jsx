@@ -2,6 +2,9 @@ import React from 'react';
 import styles from  './DogCard.module.css'
 
 export default function DogCard({name,image,temperament,weight}){
+    if(!temperament){
+        temperament = "None"
+    }
     return(
         <li className={styles.format}>
             <h3 className={styles.name}>{name}</h3>
@@ -12,6 +15,6 @@ export default function DogCard({name,image,temperament,weight}){
             <span>{weight} kg</span>
         </li>
     )
-};
+}; 
 
 

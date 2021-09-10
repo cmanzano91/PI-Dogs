@@ -1,6 +1,6 @@
 .image{
-    width: 30%;
-    height: 30%;
+    width: 25%;
+    height: 25%;
     border-radius: 3em;
 
 }
@@ -19,3 +19,20 @@
     margin-top: -2em;
 }
 
+.detail{
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    justify-content: center;
+    padding-left: 15px;
+    padding-bottom: 50px;
+    
+}
+
+.name{
+    font-size: 30px;
+    font-weight: 200;
+    /* padding-top: -10px; */
+    /* padding-bottom: -10px; */
+    /* margin-left: -10em;  */
+    /* margin-top: -0.05em; */
+}

@@ -34,36 +34,36 @@ describe("< NewDog />", () => {
       expect(wrapper.find('input[name="name"]')).toHaveLength(1);
     });
 
-    it('Renderiza un label con el texto igual a "Min. height "', () => {
+    it('Renderiza un label con el texto igual a "Min. height (cm) "', () => {
       // El orden en el que se encuentran los Labels es importante.
-      expect(wrapper.find("label").at(1).text()).toEqual("Min. height ");
+      expect(wrapper.find("label").at(1).text()).toEqual("Min. height (cm) ");
     });
 
     it('Renderiza una textarea con la propiedad "name" igual a "minheight"', () => {
       expect(wrapper.find('textarea[name="minheight"]')).toHaveLength(1);
     });
 
-    it('Renderiza un label con el texto igual a "Max. height "', () => {
+    it('Renderiza un label con el texto igual a "Max. height (cm)  "', () => {
       // El orden en el que se encuentran los Labels es importante.
-      expect(wrapper.find("label").at(2).text()).toEqual("Max. height ");
+      expect(wrapper.find("label").at(2).text()).toEqual("Max. height (cm)  ");
     });
 
     it('Renderiza un input con la propiedad "name" igual a "maxheight"', () => {
       expect(wrapper.find('input[name="maxheight"]')).toHaveLength(1);
     });
 
-    it('Renderiza un label con el texto igual a "Min. weight "', () => {
+    it('Renderiza un label con el texto igual a "Min. weight (kg)  "', () => {
       // El orden en el que se encuentran los Labels es importante.
-      expect(wrapper.find("label").at(3).text()).toEqual("Min. weight ");
+      expect(wrapper.find("label").at(3).text()).toEqual("Min. weight (kg)  ");
     });
 
     it('Renderiza un input con la propiedad "name" igual a "minweight"', () => {
       expect(wrapper.find('input[name="minweight"]')).toHaveLength(1);
     });
 
-    it('Renderiza un label con el texto igual a "Max. height "', () => {
+    it('Renderiza un label con el texto igual a "Max. weight (cm)  "', () => {
         // El orden en el que se encuentran los Labels es importante.
-        expect(wrapper.find("label").at(3).text()).toEqual("Max. height ");
+        expect(wrapper.find("label").at(3).text()).toEqual("Max. weight (cm)  ");
       });
   
       it('Renderiza un input con la propiedad "name" igual a "maxweight"', () => {

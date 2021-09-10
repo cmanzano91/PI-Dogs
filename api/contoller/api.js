@@ -12,7 +12,13 @@ module.exports = {
          const dogs =  await dataApi.data.map((d) => {
              if(d.temperament){
                  try{
-                 let arrayTemp = d.temperament.split(',').map(t => t.trim()).join(', ')
+                 let arrayTemp = d.temperament.split(',').map(t => {
+                    if(t.trim() === "Hardworking"){
+                         return t = "Hard-working"  
+                     } 
+                    return t.trim()
+                }).join(', ')
+
                  d.temperament = arrayTemp
                 }
              
@@ -25,10 +31,11 @@ module.exports = {
                  image:d.image.url,
                  name:d.name,
                  weight:d.weight.metric,
-                 height:d.height.metric,
+                 height:d.height.imperial,
                  life_span: d.life_span,
                  temperament: d.temperament,
                 }});
+        
          return dogs
         }
         catch(e){

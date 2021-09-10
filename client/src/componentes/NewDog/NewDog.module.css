@@ -7,6 +7,7 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
+    padding-bottom: 100px;
 }
 
 .container{
@@ -14,12 +15,23 @@
     height: 100vh;
     backdrop-filter: blur(3px);
     background-color: #f3f3f373;
+    padding-bottom: 100px;
+}
+
+.head{
+    border: 1px solid black;
+    margin-left: 300px;
+    margin-right: 300px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 30px;
+    border-radius: 20px;
 }
 
 .formName{
     color:black;
     font-size: 1em;
-    font-weight: 300;
+    font-weight: 400;
     width: 75rem;
     margin-bottom: 1rem;
 }
@@ -28,9 +40,13 @@
 .formHeight , .formWeight, .formLifeSpan, .formTemperaments{
     color:black;
     font-size: 1em;
-    font-weight: 300;
+    font-weight: 400;
     width: 75rem;
     margin-bottom: 1rem;
+}
+
+.errors{
+    font-weight: 100;
 }
 
 

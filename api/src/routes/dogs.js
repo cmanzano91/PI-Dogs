@@ -1,5 +1,5 @@
 var express = require('express');
-const {Dog, Temperament} = require('../db.js');
+const {Dog} = require('../db.js');
 const api = require('../../contoller/api');
 const dogsApi = require('../../contoller/dogsApi');
 const dogsBD = require('../../contoller/dogsDB')
@@ -80,9 +80,18 @@ catch(e){
 router.post('/', async (req,res) =>{
 
   const {name, minheight, maxheight, minweight, maxweight, minlife_span, maxlife_span, temperament} = req.body;
-  let height = minheight + ' - ' + maxheight
-  let weight = minweight + ' - ' + maxweight
-  let life_span = minlife_span + ' - ' + maxlife_span + ' years'
+  let height = minheight + ' - ' + maxheight;
+  let weight = minweight + ' - ' + maxweight;
+  let life_span;
+  let temperamentsNewDog = [];
+
+  if(minlife_span && maxlife_span){
+  life_span = minlife_span + ' - ' + maxlife_span + ' years';
+  }
+  else{
+    life_span = 'Life span not declared';
+  }
+
   let image ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0G5ozUnb5Scrh7O-U4R5leSxHo17hwUhRhEPaykldXUr5z5HJ451-C2oti-4-sWq7T0E&usqp=CAU'
 
 if(name && minweight && maxweight && minheight && minheight){
@@ -105,7 +114,7 @@ if(name && minweight && maxweight && minheight && minheight){
   }
 }
 else{
-  return res.status(404).send({msg: "Error de carga de perro"})
+  return res.status(404).send({msg: "Faltan los valores basicos"})
 }
 
 });

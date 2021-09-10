@@ -15,7 +15,9 @@ export default function DogsDetails({id}){
     },[dispatch]); 
 
     const dogDetail = useSelector(state => state.dogDetails); 
-
+    if(!dogDetail.temperament){
+        dogDetail.temperament = "None"
+    }
     return(
         <div style = {{backgroundImage : `url(${dogDetail.image})`,width: '100%',height: '100%',backgroundRepeat: 'no-repeat',backgroundSize: 'cover',paddingTop:'20px'}}>
         <div className={styles.bkg}>
@@ -25,16 +27,18 @@ export default function DogsDetails({id}){
         </Link>
         </div>
         <div>
-        <h3>{dogDetail.name}</h3>
+        <h3 className={styles.name}>{dogDetail.name}</h3>
         <img className={styles.image} src={dogDetail.image} alt="Image not found"/>
         <h5>Temperaments:</h5>
         <ul>{dogDetail.temperament}</ul>
+        <div className={styles.detail}>
         <h5>Weight: </h5>
-        <p>{dogDetail.weight} kg</p>
         <h5>Height: </h5>
-        <p>{dogDetail.height} mts</p>
         <h5>Life Span: </h5>
+        <p>{dogDetail.weight} kg</p>
+        <p>{dogDetail.height} cm</p>
         <p>{dogDetail.life_span}</p>
+        </div>
         <br />
         </div>
         </div> 
