@@ -7,9 +7,11 @@ import {Provider} from 'react-redux'; // para poder conectar el store a mi app
 import store from '../src/store/store.js'
 
 ReactDOM.render(
+  <React.StrictMode>
   <Provider store={store}> 
     <App />
-  </Provider>,
+  </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

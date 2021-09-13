@@ -22,25 +22,25 @@ describe('Dogs routes', () => {
     .then(() => Dog.create(dog)));
 
   describe('GET /dogs', () => {
-    it('should get 200', () =>
+    it('should get a 200 status', () =>
       agent.get('/dogs').expect(200)
     );
 
     describe("GET /dogs", () => {
-      it("should get 200 id", async () => { await agent.get("/dogs/3").expect(200)}) //
-      it("should get 200 name", () =>
+      it("should get a 200 status when id is found", async () => { await agent.get("/dogs/3").expect(200)}) //
+      it("should get a 200 status when name is found", () =>
         agent.get("/dogs?name=Golden").expect(200));
-      it("should get 400", () => agent.get("/dogs/-1").expect(400));
+      it("should get a 400 status when dogs id isnt found", () => agent.get("/dogs/-1").expect(400));
     });
 
     describe("GET /temperaments", () => {
-      it("should receive a 200", () => {
+      it("should receive a 200 status for temperaments", () => {
         agent.get("/temperaments").expect(200);
       });
     });
 
     describe("POST create /dogs", () => {
-      it("It should return a new dog (200)", () => {
+      it("It should return a new dog when the correct properties are send", () => {
         agent
           .post("/dogs")
           .send({name: 'Juan', minheight:'1', maxheight:'70', minweight:'5', maxweight:'30'})

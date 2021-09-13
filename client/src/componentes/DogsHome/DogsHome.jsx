@@ -57,6 +57,7 @@ function handleSortByWeight(e){
     dispatch(sortByWeight(e.target.value));
     setCurrentPage(1);
     setOrderW(`${e.target.value}`);
+
 }
 
 function handleSortByName(e){
@@ -64,7 +65,6 @@ function handleSortByName(e){
     dispatch(sortByName(e.target.value));
     setCurrentPage(1);
     setOrder(`${e.target.value}`);
-
 }
 
 // --------- RELOAD DOGS ----------- 

@@ -83,7 +83,6 @@ router.post('/', async (req,res) =>{
   let height = minheight + ' - ' + maxheight;
   let weight = minweight + ' - ' + maxweight;
   let life_span;
-  let temperamentsNewDog = [];
 
   if(minlife_span && maxlife_span){
   life_span = minlife_span + ' - ' + maxlife_span + ' years';
