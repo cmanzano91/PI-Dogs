@@ -8,7 +8,7 @@ import {IoSearch} from 'react-icons/io5';
 
 export default function SearchBar(){
     const dispatch = useDispatch();
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState("");
     
     function handleChange(e){
         e.preventDefault();
@@ -18,13 +18,13 @@ export default function SearchBar(){
     function handleSubmit(e){
         e.preventDefault();
         dispatch(getDogsName(search));
-        setSearch('');  
+        setSearch("");
     }
     
     return(
         <div>
-            <input className={styles.input} type="text" placeholder='Search dog by name...' onChange={(e) => handleChange(e)}/>
-            <button className={styles.button} type='submit' onClick ={(e) => handleSubmit(e)}><IoSearch/></button>
+            <input className={styles.input} value ={search} type="text" placeholder='Search dog by name...' onChange={(e) => handleChange(e)}/>
+            <button className={styles.button} type='submit' onClick={e => handleSubmit(e)}><IoSearch/></button>
         </div>
 
     );    

@@ -9,7 +9,7 @@ import {IoHome} from 'react-icons/io5'
 
 function validation(newDog){
     let errors = {}
-    if(!newDog.name){
+    if(newDog.name === ' '){
         errors.name = 'Must enter a name'
     }
     if(newDog.minheight <= 0 ){

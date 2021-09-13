@@ -29,6 +29,7 @@ export default function DogsDetails({id}){
         <div>
         <h3 className={styles.name}>{dogDetail.name}</h3>
         <img className={styles.image} src={dogDetail.image} alt="Image not found"/>
+        <div className={styles.allD}>
         <h5>Temperaments:</h5>
         <ul>{dogDetail.temperament}</ul>
         <div className={styles.detail}>
@@ -38,6 +39,7 @@ export default function DogsDetails({id}){
         <p>{dogDetail.weight} kg</p>
         <p>{dogDetail.height} cm</p>
         <p>{dogDetail.life_span}</p>
+        </div>
         </div>
         <br />
         </div>
