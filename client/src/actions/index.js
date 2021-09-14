@@ -6,8 +6,8 @@ export function getDogs(){
         return dispatch ({
             type: 'GET_DOGS',
             payload: dogs.data
-        })
-    }
+        });
+    };
 };
 
 export function getTemperaments(){
@@ -16,8 +16,8 @@ export function getTemperaments(){
         return dispatch ({
             type: 'GET_TEMPERAMENTS',
             payload: temperaments.data
-        })
-    }
+        });
+    };
 };
 
 export function getDogDetails(id){
@@ -26,8 +26,8 @@ export function getDogDetails(id){
         return dispatch ({
             type: 'GET_DOGS_DETAIL',
             payload: dogDetails.data
-        })
-     }
+        });
+     };
  
 };
 
@@ -38,13 +38,13 @@ export function getDogsName(name){
         return dispatch ({
             type: 'GET_DOGS_NAME',
             payload: dogsName.data
-        })
+        });
     
     }
     catch(e){
         alert('Dogs not found')
     }
-     }
+    };
  
 };
 
@@ -53,7 +53,7 @@ export function postDog(payload){
     return async function(){
         var newDog = await axios.post('http://localhost:3001/dogs',payload);
         return newDog
-    }
+    };
  
 };
 
@@ -61,25 +61,25 @@ export function filterDog(payload){
     return {
         type: 'FILTER_DOG',
         payload
-    }
+    };
 };
 
 export function filterTemperament(payload){
     return {
         type: 'FILTER_TEMPERAMENT',
         payload
-    }
+    };
 };
 export function sortByWeight(payload){
     return {
         type: 'SORT_BY_WEIGHT',
         payload
-    }
+    };
 };
 
 export function sortByName(payload){
     return {
         type: 'SORT_BY_NAME',
         payload
-    }
+    };
 };

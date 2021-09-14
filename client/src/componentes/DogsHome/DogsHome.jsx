@@ -20,18 +20,18 @@ const [orderW, setOrderW] = useState('');
 
 useEffect(() => {
     dispatch(getDogs());
-},[dispatch]); // queda vacio para que se monte ya que no depende de nada
+},[dispatch]); 
 
 useEffect(() => {
     dispatch(getTemperaments());
-},[dispatch]); // queda vacio para que se monte ya que no depende de nada
+},[dispatch]); 
 
 
 // ---------- PAGINATION ------------------
-const [currentPage, setCurrentPage] = useState(1); // seteo mi primera pagina
-const [dogsPage,setDogsPage] = useState(8); // cuantos perros por pagina
-const lastDogPos =(currentPage * dogsPage); // 8 
-const firsDogPos =(lastDogPos - dogsPage);// 0
+const [currentPage, setCurrentPage] = useState(1); 
+const [dogsPage,setDogsPage] = useState(8); 
+const lastDogPos =(currentPage * dogsPage);  
+const firsDogPos =(lastDogPos - dogsPage);
 const currentDogs = dogs.slice(firsDogPos,lastDogPos);
 
 const pagination = (page) =>{
@@ -57,6 +57,8 @@ function handleSortByWeight(e){
     dispatch(sortByWeight(e.target.value));
     setCurrentPage(1);
     setOrderW(`${e.target.value}`);
+    e.target.value ='default';
+    setOrder(`${e.target.value}`);
 
 }
 
@@ -65,6 +67,8 @@ function handleSortByName(e){
     dispatch(sortByName(e.target.value));
     setCurrentPage(1);
     setOrder(`${e.target.value}`);
+    e.target.value = 'default'
+    setOrderW(`${e.target.value}`)
 }
 
 // --------- RELOAD DOGS ----------- 
@@ -72,6 +76,7 @@ function handleSortByName(e){
 function handleDogs(e){
     e.preventDefault()
     dispatch(getDogs())
+
 }
 
 
@@ -95,23 +100,25 @@ return (
             </button>
         </div>
         <div className={styles.filters}>   
-            <select onChange={(e)=> handleSortByName(e)}> 
-                <option value="allN" key="name">Sort by Name</option>          
-                <option value="ascN" key="asc">Ascendente</option>
-                <option value="desN" key="des">Descendente</option>
+            <select onChange={(e)=> handleSortByName(e)} defaultValue="default"> 
+                <option value="default" disabled="disabled">Sort by Name</option>          
+                <option value="ascN" key="asc">Ascendent</option>
+                <option value="desN" key="des">Descendent</option>
             </select>
-            <select onChange={(e)=> handleSortByWeight(e)}>
-                <option value="allW" key="allW">Sort by Weight</option>
-                <option value="ascW" key="ascW">Ascendente Weight</option>
-                <option value="desW" key="desW">Descendente Weight</option>
+            <select onChange={(e)=> handleSortByWeight(e)} defaultValue="default">
+                <option value="default" disabled="disabled">Sort by Weight</option>
+                <option value="ascW" key="ascW">Ascendent Weight</option>
+                <option value="desW" key="desW">Descendent Weight</option>
             </select>
-            <select onChange={(e)=> handleFilterByDogs(e)}>
-                <option value='all' key="all">Filter by Breeds</option>    
-                <option value='number' key="number">Breeds of api</option>
-                <option value ='notnumber' key="notnumber">Breed created by as</option>
+            <select onChange={(e)=> handleFilterByDogs(e)} defaultValue="default">
+                <option value='default' disabled='disabled'>Filter by breeds</option> 
+                <option value='all' key="all">All breeds</option>    
+                <option value='number' key="number">Api</option>
+                <option value ='notnumber' key="notnumber">Created</option>
             </select>
-            <select onChange ={e => handleTemperaments(e)}>
-                <option value='allT' key="allT">Filter by Temperaments</option>
+            <select onChange ={e => handleTemperaments(e)} defaultValue="default">
+            <option value='default' disabled='disabled' >Filter by temperaments</option>
+                <option value='allT' key="allT">All temperaments</option>
                 { temperaments && temperaments.map(d =>   
                     <option key={d} value={d}>{d}</option>
                 )}

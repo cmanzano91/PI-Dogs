@@ -15,13 +15,13 @@ function validation(newDog){
     if(newDog.minheight <= 0 ){
         errors.numberMinheight = 'Remember min height should be higher than 0!'
     }
-    if(newDog.maxheight > 500){
+    if(newDog.maxheight > 500 || parseInt(newDog.minheight) > parseInt(newDog.maxheight)){
         errors.numberMaxheight = 'Thats a weird max height for a dog!'
     }
     if(newDog.minweight <= 0) {
         errors.numberMinweight = 'Remember min weight should be higher than 0!'
     }
-    if(newDog.maxweight > 500 ){
+    if(newDog.maxweight > 500 || parseInt(newDog.minweight) > parseInt(newDog.maxweight) ){
         errors.numberMaxweight = 'Thats a weird max weight for a dog!'
     }
     return errors
@@ -56,6 +56,7 @@ export default function NewDog(){
               ...newDog,
               temperament: [...newDog.temperament,e.target.value]
           });
+          e.target.value = 'default'
       };
 
       function handleDelete(t){
@@ -67,10 +68,14 @@ export default function NewDog(){
 
       function handleSubmit(e){
           e.preventDefault();
-          console.log(newDog)
+          if(newDog.minheight >= 0 && newDog.minweight >= 0 && newDog.maxheight >= newDog.minheight && newDog.maxweight >= newDog.minweight && newDog.name){
           dispatch(postDog(newDog));
           alert('Dog was succesfully created');
           setNewDog({name:'',  minheight:'', maxheight:'', minweight:'', maxweight:'', minlife_span:'', maxlife_span:'', temperament:[]});
+        }
+        else{
+            alert('Oops! Something went wrong! make sure everything is completed correctly')
+        }
         };
 
       
@@ -118,8 +123,8 @@ export default function NewDog(){
             </div>
             <div className={styles.formTemperaments}>
             <label>Choose temperaments: </label>
-            <select onChange ={e => handleSelect(e)}>
-            <option></option>
+            <select onChange ={e => handleSelect(e)} defaultValue='default'>
+            <option value='default' disabled='default'></option>
             { temperaments && temperaments.map(d =>    
             <option key={d} value={d}>{d}</option>
             )}

@@ -1,4 +1,75 @@
-//
+// SORT ACTIONS 
+// let dogsWeight;
+//             if(action.payload === 'allW'){
+//                 dogsWeight = state.dogs
+//             }
+//             if(action.payload === 'ascW'){
+//                 dogsWeight = state.dogs.sort(function(a,b){
+//                     if(!b.weight.split('-')[1] || (b.weight.split('-')[0].trim() === 'NaN')){
+//                         if(parseInt(a.weight.split('-')[1]) > parseInt(b.weight.split('-')[0])){
+//                             return -1
+//                         }
+//                         if(parseInt(a.weight.split('-')[1]) < parseInt(b.weight.split('-')[0])){
+//                             return 1
+//                         }
+//                             return 0
+//                         }
+//                     if(!a.weight.split('-')[1] || (b.weight.split('-')[0].trim() === 'NaN')){
+//                         if(parseInt(a.weight.split('-')[0]) > parseInt(b.weight.split('-')[1])){
+//                             return -1
+//                         }
+//                         if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[1])){
+//                             return 1
+//                         }
+//                             return 0
+//                         }
+
+//                     if(parseInt(a.weight.split('-')[1]) > parseInt(b.weight.split('-')[1])){
+//                                 return -1
+//                             }
+//                             if(parseInt(a.weight.split('-')[1]) < parseInt(b.weight.split('-')[1])){
+//                                 return 1
+//                             }
+//                                 return 0                   
+//                     })
+//                     console.log(dogsWeight)
+//             }
+// if(action.payload === 'desW'){
+//     dogsWeight = state.dogs.sort(function(a,b){
+
+//         if(!b.weight.split('-')[0] || (b.weight.split('-')[0].trim() === 'NaN')){
+//             if(parseInt(a.weight.split('-')[0]) > parseInt(b.weight.split('-')[1])){
+//                 return 1
+//             }
+//             if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[1])){
+//                 return -1
+//             }
+//                 return 0
+//             }
+//         if(!a.weight.split('-')[0] || (a.weight.split('-')[0].trim() === 'NaN')){
+//             if(parseInt(a.weight.split('-')[1]) > parseInt(b.weight.split('-')[0])){
+//                 return 1
+//             }
+//             if(parseInt(a.weight.split('-')[1]) < parseInt(b.weight.split('-')[0])){
+//                 return -1
+//             }
+//                 return 0
+//             }
+    
+//         if(parseInt(a.weight.split('-')[0]) > parseInt(b.weight.split('-')[0])){
+//                 return 1
+//             }
+//             if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[0])){
+//                 return -1
+//             }
+//                 return 0
+
+//     })
+//       console.log(dogsWeight)                    
+// }
+
+
+//  TESTING
 // import Enzyme from 'enzyme';
 // import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 // import { createSerializer } from 'enzyme-to-json';

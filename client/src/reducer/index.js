@@ -6,23 +6,22 @@ const initialState = {
     dogDetails: [],
 };
 
-var flagT = false
-var flagB = false
+var flag = false;
 
 function weightA(a){
-let arrayA = a.weight.split('-')
-if(parseInt(arrayA[0]) && parseInt(arrayA[1])) return (parseInt(arrayA[0]) + parseInt(arrayA[1]))/2
-if(arrayA[0].trim() === 'NaN' && !arrayA[1]) return 200
-if(!parseInt(arrayA[0]) || arrayA[0].trim() === 'NaN') return parseInt(arrayA[1])
-if(!parseInt(arrayA[1]) || arrayA[1].trim() === 'NaN' ) return parseInt(arrayA[0])
+let arrayA = a.weight.split('-');
+if(parseInt(arrayA[0]) && parseInt(arrayA[1])) return (parseInt(arrayA[0]) + parseInt(arrayA[1]))/2;
+if(arrayA[0].trim() === 'NaN' && !arrayA[1]) return 1000;
+if(!parseInt(arrayA[0]) || arrayA[0].trim() === 'NaN') return parseInt(arrayA[1]);
+if(!parseInt(arrayA[1]) || arrayA[1].trim() === 'NaN' ) return parseInt(arrayA[0]);
 }
 
 function weightB(b){
-let arrayB = b.weight.split('-')    
-if(parseInt(arrayB[0]) && parseInt(arrayB[1])) return (parseInt(arrayB[0]) + parseInt(arrayB[1]))/2
-if(arrayB[0].trim() === 'NaN' && !arrayB[1]) return 200
-if(!parseInt(arrayB[0]) || arrayB[0].trim() === 'NaN') return parseInt(arrayB[1])
-if(!parseInt(arrayB[1]) || arrayB[1].trim() === 'NaN' ) return parseInt(arrayB[0])
+let arrayB = b.weight.split('-');    
+if(parseInt(arrayB[0]) && parseInt(arrayB[1])) return (parseInt(arrayB[0]) + parseInt(arrayB[1]))/2;
+if(arrayB[0].trim() === 'NaN' && !arrayB[1]) return 1000;
+if(!parseInt(arrayB[0]) || arrayB[0].trim() === 'NaN') return parseInt(arrayB[1]);
+if(!parseInt(arrayB[1]) || arrayB[1].trim() === 'NaN' ) return parseInt(arrayB[0]);
 }
 
 function rootReducer(state = initialState, action){
@@ -56,59 +55,45 @@ function rootReducer(state = initialState, action){
         case 'FILTER_DOG':
             let dogs = state.allDogs;
             let filterDog;
-            if(flagT && flagB){
-                dogs = flagT
+            if(flag){
+                dogs = state.dogs;
             }
-            if(flagT && !flagB){
-                dogs = state.dogs
-            }    
             if(action.payload === 'all'){
-                if(flagT){
-                 filterDog = flagT
-                }
-                else{
-                    filterDog = state.allDogs
-                }
-                flagB = false
+                filterDog = state.allDogs;
             }
             else{
             if(action.payload === 'number'){
-                filterDog = dogs.filter(d => !isNaN(d.id))
-                flagB = filterDog
-            } 
+                filterDog = dogs.filter(d => !isNaN(d.id));
+            
+            }
             else{
-                filterDog = dogs.filter(d => isNaN(d.id))
-                flagB = filterDog
+                filterDog = dogs.filter(d => isNaN(d.id));
+            
             }
             }
+            flag = true
+
             return {
                 ...state,
                 dogs: filterDog,
             }; 
         
         case 'FILTER_TEMPERAMENT':
-            let dogs3 = state.allDogs
+            let dogs3 = state.allDogs;
             let dogsTemp;
-            if(flagB && flagT){
-                dogs3 = flagB
-            }
-            if(flagB && !flagT){
+            if(flag){
                 dogs3 = state.dogs
-            }    
+            }
             if(action.payload === 'allT'){
-                if(flagB){
-                    dogsTemp = flagB
-                }else{
                 dogsTemp = state.allDogs
-                }
-                flagT = false
             }
             else{
-               dogsTemp = dogs3.filter(d => 
-                d.temperament && d.temperament.length && d.temperament.includes(action.payload)
-            )
-                flagT = dogsTemp  
-            }        
+            dogsTemp = dogs3.filter(d => 
+                    d.temperament && d.temperament.length && d.temperament.includes(action.payload)
+                )
+            } 
+            flag = true
+
             return{
                 ...state,
                 dogs: dogsTemp
@@ -117,32 +102,18 @@ function rootReducer(state = initialState, action){
         case 'SORT_BY_WEIGHT':
             let dogsWeight;
             if(action.payload === 'allW'){
-                dogsWeight = state.dogs
+                dogsWeight = state.dogs;
             }
             if(action.payload === 'ascW'){
-
-                dogsWeight = state.dogs.sort(function(a,b){
-                    if(weightA(a) > weightB(b)){
-                        return -1
-                    }
-                    if(weightA(a) < weightB(b)){
-                        return 1
-                    }
-                        return 0
+                dogsWeight = state.dogs.sort(function(a, b){
+                    return weightA(b) - weightB(a)
                 })
-            }
+            };
             if(action.payload === 'desW'){
                 dogsWeight = state.dogs.sort(function(a,b){
-
-                if(weightA(a) > weightB(b)){
-                            return 1
-                        }
-                if(weightA(a) < weightB(b)){
-                            return -1
-                        }
-                            return 0
-                    })
-                }     
+                    return weightB(a) - weightA(b) 
+                })
+                };    
             return {
                 ...state,
                 dogs: dogsWeight,
@@ -151,8 +122,8 @@ function rootReducer(state = initialState, action){
         case 'SORT_BY_NAME':
             let sortDog;
             if(action.payload === 'allN'){
-                sortDog = state.dogs
-            }
+                sortDog = state.dogs;
+            };
             if(action.payload === 'ascN'){
                 sortDog = state.dogs.sort(function(a,b){
                     if(a.name > b.name){
@@ -162,8 +133,8 @@ function rootReducer(state = initialState, action){
                         return -1
                     }
                         return 0
-                })
-            }
+                });
+            };
             if(action.payload === 'desN'){
                 sortDog = state.dogs.sort(function(a,b){
                     if(a.name > b.name){
@@ -173,7 +144,7 @@ function rootReducer(state = initialState, action){
                         return 1
                     }
                         return 0
-                })
+                });
                                       
             };
             return {
@@ -210,71 +181,56 @@ export default rootReducer;
 
 
 
-// let dogsWeight;
-//             if(action.payload === 'allW'){
-//                 dogsWeight = state.dogs
-//             }
-//             if(action.payload === 'ascW'){
-//                 dogsWeight = state.dogs.sort(function(a,b){
-//                     if(!b.weight.split('-')[1] || (b.weight.split('-')[0].trim() === 'NaN')){
-//                         if(parseInt(a.weight.split('-')[1]) > parseInt(b.weight.split('-')[0])){
-//                             return -1
-//                         }
-//                         if(parseInt(a.weight.split('-')[1]) < parseInt(b.weight.split('-')[0])){
-//                             return 1
-//                         }
-//                             return 0
-//                         }
-//                     if(!a.weight.split('-')[1] || (b.weight.split('-')[0].trim() === 'NaN')){
-//                         if(parseInt(a.weight.split('-')[0]) > parseInt(b.weight.split('-')[1])){
-//                             return -1
-//                         }
-//                         if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[1])){
-//                             return 1
-//                         }
-//                             return 0
-//                         }
 
-//                     if(parseInt(a.weight.split('-')[1]) > parseInt(b.weight.split('-')[1])){
-//                                 return -1
-//                             }
-//                             if(parseInt(a.weight.split('-')[1]) < parseInt(b.weight.split('-')[1])){
-//                                 return 1
-//                             }
-//                                 return 0                   
-//                     })
-//                     console.log(dogsWeight)
-//             }
-// if(action.payload === 'desW'){
-//     dogsWeight = state.dogs.sort(function(a,b){
 
-//         if(!b.weight.split('-')[0] || (b.weight.split('-')[0].trim() === 'NaN')){
-//             if(parseInt(a.weight.split('-')[0]) > parseInt(b.weight.split('-')[1])){
-//                 return 1
-//             }
-//             if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[1])){
-//                 return -1
-//             }
-//                 return 0
-//             }
-//         if(!a.weight.split('-')[0] || (a.weight.split('-')[0].trim() === 'NaN')){
-//             if(parseInt(a.weight.split('-')[1]) > parseInt(b.weight.split('-')[0])){
-//                 return 1
-//             }
-//             if(parseInt(a.weight.split('-')[1]) < parseInt(b.weight.split('-')[0])){
-//                 return -1
-//             }
-//                 return 0
-//             }
-    
-//         if(parseInt(a.weight.split('-')[0]) > parseInt(b.weight.split('-')[0])){
-//                 return 1
-//             }
-//             if(parseInt(a.weight.split('-')[0]) < parseInt(b.weight.split('-')[0])){
-//                 return -1
-//             }
-//                 return 0
 
-//     })
-//       console.log(dogsWeight)                    
-// }
+
+
+// var flagT = false;
+// var flagB = false;
+            // if(flagT && flagB){
+            //     dogs = flagT;
+            // };
+            // if(flagT && !flagB){
+            //     dogs = state.dogs;
+            // };
+            // if(action.payload === 'all'){
+            //     if(flagT){
+            //      filterDog = flagT;
+            //     }
+            //     else{
+            //         filterDog = state.allDogs;
+            //     }
+            //     flagB = false;
+            // }
+            // else{
+            // if(action.payload === 'number'){
+            //     filterDog = dogs.filter(d => !isNaN(d.id));
+            //     flagB = filterDog;
+            // } 
+            // else{
+            //     filterDog = dogs.filter(d => isNaN(d.id));
+            //     flagB = filterDog;
+            // }
+            // };
+                        // if(flagB && flagT){
+            //     dogs3 = flagB;
+            // };
+            // if(flagB && !flagT){
+            //     dogs3 = state.dogs;
+            // };    
+            // if(action.payload === 'allT'){
+            //     if(flagB){
+            //         dogsTemp = flagB;
+            //     }else{
+            //     dogsTemp = state.allDogs;
+            //     }
+            //     flagT = false;
+            // }
+            // else{
+            //    dogsTemp = dogs3.filter(d => 
+            //     d.temperament && d.temperament.length && d.temperament.includes(action.payload)
+            // );
+            //     flagT = dogsTemp;  
+            // };  
+                 
