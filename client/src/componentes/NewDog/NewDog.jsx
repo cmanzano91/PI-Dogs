@@ -12,16 +12,16 @@ function validation(newDog){
     if(newDog.name === ' '){
         errors.name = 'Must enter a name'
     }
-    if(newDog.minheight <= 0 ){
+    if(newDog.minheight && newDog.minheight <= 0 ){
         errors.numberMinheight = 'Remember min height should be higher than 0!'
     }
-    if(newDog.maxheight > 500 || parseInt(newDog.minheight) > parseInt(newDog.maxheight)){
+    if(newDog.maxheight && (newDog.maxheight > 500 || parseInt(newDog.minheight) > parseInt(newDog.maxheight))){
         errors.numberMaxheight = 'Thats a weird max height for a dog!'
     }
-    if(newDog.minweight <= 0) {
+    if(newDog.minweight && newDog.minweight <= 0) {
         errors.numberMinweight = 'Remember min weight should be higher than 0!'
     }
-    if(newDog.maxweight > 500 || parseInt(newDog.minweight) > parseInt(newDog.maxweight) ){
+    if(newDog.maxweight && (newDog.maxweight > 500 || parseInt(newDog.minweight) > parseInt(newDog.maxweight))){
         errors.numberMaxweight = 'Thats a weird max weight for a dog!'
     }
     return errors
@@ -68,13 +68,13 @@ export default function NewDog(){
 
       function handleSubmit(e){
           e.preventDefault();
-          if(newDog.minheight >= 0 && newDog.minweight >= 0 && newDog.maxheight >= newDog.minheight && newDog.maxweight >= newDog.minweight && newDog.name){
+          if(newDog.minheight >= 0 && newDog.minweight >= 0 && parseInt(newDog.maxheight) >= parseInt(newDog.minheight) && parseInt(newDog.maxweight) >= parseInt(newDog.minweight) && newDog.name){
           dispatch(postDog(newDog));
           alert('Dog was succesfully created');
           setNewDog({name:'',  minheight:'', maxheight:'', minweight:'', maxweight:'', minlife_span:'', maxlife_span:'', temperament:[]});
         }
         else{
-            alert('Oops! Something went wrong! make sure everything is completed correctly')
+            alert('Oops! Something went wrong! make sure everything is correctly completed')
         }
         };
 
