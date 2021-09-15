@@ -68,6 +68,58 @@
 //       console.log(dogsWeight)                    
 // }
 
+// FILTER TEMPERAMENTS AND API/CREATED
+
+
+
+// var flagT = false;
+// var flagB = false;
+            // if(flagT && flagB){
+            //     dogs = flagT;
+            // };
+            // if(flagT && !flagB){
+            //     dogs = state.dogs;
+            // };
+            // if(action.payload === 'all'){
+            //     if(flagT){
+            //      filterDog = flagT;
+            //     }
+            //     else{
+            //         filterDog = state.allDogs;
+            //     }
+            //     flagB = false;
+            // }
+            // else{
+            // if(action.payload === 'number'){
+            //     filterDog = dogs.filter(d => !isNaN(d.id));
+            //     flagB = filterDog;
+            // } 
+            // else{
+            //     filterDog = dogs.filter(d => isNaN(d.id));
+            //     flagB = filterDog;
+            // }
+            // };
+                        // if(flagB && flagT){
+            //     dogs3 = flagB;
+            // };
+            // if(flagB && !flagT){
+            //     dogs3 = state.dogs;
+            // };    
+            // if(action.payload === 'allT'){
+            //     if(flagB){
+            //         dogsTemp = flagB;
+            //     }else{
+            //     dogsTemp = state.allDogs;
+            //     }
+            //     flagT = false;
+            // }
+            // else{
+            //    dogsTemp = dogs3.filter(d => 
+            //     d.temperament && d.temperament.length && d.temperament.includes(action.payload)
+            // );
+            //     flagT = dogsTemp;  
+            // };  
+                 
 
 //  TESTING
 // import Enzyme from 'enzyme';

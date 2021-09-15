@@ -15,6 +15,7 @@ export default function DogsDetails({id}){
     },[dispatch]); 
 
     const dogDetail = useSelector(state => state.dogDetails); 
+
     if(!dogDetail.temperament){
         dogDetail.temperament = "None"
     }
@@ -49,10 +50,3 @@ export default function DogsDetails({id}){
 
 };
 
-        // style = {{
-        //     backgroundImage : `url(${dogDetail.image})`,
-        //     width: '100vw',
-        //     height: '200vh',
-        //     backgroundRepeat: 'no-repeat',
-        //     position: 'absolute',
-        // }}

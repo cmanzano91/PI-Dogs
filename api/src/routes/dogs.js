@@ -84,7 +84,7 @@ router.post('/', async (req,res) =>{
   let weight = minweight + ' - ' + maxweight;
   let life_span;
 
-  if(minlife_span && maxlife_span && minlife_span <= maxlife_span){
+  if(minlife_span && maxlife_span && parseInt(minlife_span) <= parseInt(maxlife_span)){
   life_span = minlife_span + ' - ' + maxlife_span + ' years';
   }
   else{

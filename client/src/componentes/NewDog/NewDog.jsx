@@ -16,13 +16,13 @@ function validation(newDog){
         errors.numberMinheight = 'Remember min height should be higher than 0!'
     }
     if(newDog.maxheight && (newDog.maxheight > 500 || parseInt(newDog.minheight) > parseInt(newDog.maxheight))){
-        errors.numberMaxheight = 'Thats a weird max height for a dog!'
+        errors.numberMaxheight = `${newDog.maxheight} cm is a weird max height for a dog!`
     }
     if(newDog.minweight && newDog.minweight <= 0) {
         errors.numberMinweight = 'Remember min weight should be higher than 0!'
     }
     if(newDog.maxweight && (newDog.maxweight > 500 || parseInt(newDog.minweight) > parseInt(newDog.maxweight))){
-        errors.numberMaxweight = 'Thats a weird max weight for a dog!'
+        errors.numberMaxweight = `${newDog.maxweight} kg is a weird max weight for a dog!`
     }
     return errors
 }
